@@ -1,3 +1,3 @@
-module github.com/XuThreeFire/goutil
+module github.com/gotools/goutil
 
-go 1.18
+go 1.17
