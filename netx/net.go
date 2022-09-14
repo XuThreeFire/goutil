@@ -2,16 +2,7 @@ package netutil
 
 import (
 	"net"
-	"net/url"
 )
-
-// CopyURL get url + path
-func CopyURL(base *url.URL, path string) (next *url.URL) {
-	n := *base
-	n.Path = path
-	next = &n
-	return
-}
 
 // InternalIP get internal IP
 func InternalIP() (ip string) {
