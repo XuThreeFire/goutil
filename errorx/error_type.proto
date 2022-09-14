@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package ecode;
+
+option go_package = "goutil/errorx/errorx;errorutil";
+
+message Error {
+  int32 statusCode = 1;
+  string statusReason = 2;
+  bool resultStatus = 3;
+};

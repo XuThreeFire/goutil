@@ -33,7 +33,7 @@ func TestRandBytes(t *testing.T) {
 		t.Run(tt.name, func(t *testing.T) {
 			got, err := RandBytes(tt.args.n)
 			if (err != nil) != tt.wantErr {
-				t.Errorf("RandBytes() error = %v, wantErr %v", err, tt.wantErr)
+				t.Errorf("RandBytes() errorx = %v, wantErr %v", err, tt.wantErr)
 				return
 			}
 			if !reflect.DeepEqual(got, tt.want) {
@@ -77,7 +77,7 @@ func TestRandString(t *testing.T) {
 		t.Run(tt.name, func(t *testing.T) {
 			got, err := RandUrlEncodingString(tt.args.n)
 			if (err != nil) != tt.wantErr {
-				t.Errorf("RandString() error = %v, wantErr %v", err, tt.wantErr)
+				t.Errorf("RandString() errorx = %v, wantErr %v", err, tt.wantErr)
 				return
 			}
 			if len(got) != tt.want {

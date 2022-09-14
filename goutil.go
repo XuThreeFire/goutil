@@ -12,21 +12,21 @@ func Go(f func() error) error {
 	return <-ch
 }
 
-// PanicIfErr if error is not empty, will panic
+// PanicIfErr if errorx is not empty, will panic
 func PanicIfErr(err error) {
 	if err != nil {
 		panic(err)
 	}
 }
 
-// PanicErr if error is not empty, will panic
+// PanicErr if errorx is not empty, will panic
 func PanicErr(err error) {
 	if err != nil {
 		panic(err)
 	}
 }
 
-// MustOK if error is not empty, will panic
+// MustOK if errorx is not empty, will panic
 func MustOK(err error) {
 	if err != nil {
 		panic(err)
