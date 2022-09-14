@@ -6,8 +6,7 @@ import (
 	"fmt"
 	"time"
 
-	"git.17usoft.com/go/QQueryRobot/api/bizerr"
-	"git.17usoft.com/go/QQueryRobot/pkg/ecode"
+	errorutil "github.com/XuThreeFire/goutil/errorx"
 
 	"github.com/go-kratos/kratos/v2/errors"
 	"github.com/go-kratos/kratos/v2/log"
@@ -74,7 +73,7 @@ func extractError(err error) (log.Level, int32, string) {
 	if se := errors.FromError(err); se != nil {
 		return log.LevelError, se.Code, se.Reason + ":" + se.Message
 	}
-	if se := ecode.FromError(err); se != nil {
+	if se := errorutil.FromError(err); se != nil {
 		return log.LevelError, se.StatusCode, se.StatusReason
 	}
 	if err != nil {
@@ -102,8 +101,8 @@ func parseBizErr(reply interface{}) (log.Level, int32, string) {
 	if !ok {
 		return log.LevelError, 0, ""
 	}
-	if code == bizerr.SuccessCode ||
-		code == bizerr.ReceiveSuccessCode {
+	if code == errorutil.SuccessCode ||
+		code == errorutil.ReceiveSuccessCode {
 		return log.LevelInfo, int32(code), reason
 	}
 	return log.LevelError, int32(code), reason
@@ -157,9 +156,6 @@ func replyLog(logger log.Logger, ctx context.Context, reply interface{}, operati
 	switch operation {
 	case "":
 		log.NewHelper(logger).WithContext(ctx).Debug(ExtractArgs(reply))
-		return ""
-	case "/api.cdn.v1.TrainBaseService/GetAvailableCDNList",
-		"/api.remain.v1.QueryRemain/TrainQuery":
 		return ""
 	default:
 		return ExtractArgs(reply)

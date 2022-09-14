@@ -5,7 +5,6 @@ import (
 
 	"github.com/go-kratos/aegis/circuitbreaker"
 	"github.com/go-kratos/aegis/circuitbreaker/sre"
-	"github.com/go-kratos/kratos/v2/container/group"
 	"github.com/go-kratos/kratos/v2/errors"
 	"github.com/go-kratos/kratos/v2/middleware"
 	"github.com/go-kratos/kratos/v2/transport"
@@ -19,21 +18,21 @@ type Option func(*options)
 
 // WithGroup with circuit breaker group.
 // NOTE: implements generics circuitbreaker.CircuitBreaker
-func WithGroup(g *group.Group) Option {
+func WithGroup(g *Group) Option {
 	return func(o *options) {
 		o.group = g
 	}
 }
 
 type options struct {
-	group *group.Group
+	group *Group
 }
 
 // Breaker circuitbreaker middlewarex will return errBreakerTriggered when the circuit
 // breaker is triggered and the request is rejected directly.
 func Breaker(opts ...Option) middleware.Middleware {
 	opt := &options{
-		group: group.NewGroup(func() interface{} {
+		group: NewGroup(func() interface{} {
 			return sre.NewBreaker()
 		}),
 	}
